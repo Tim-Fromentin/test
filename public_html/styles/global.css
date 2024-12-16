@@ -1,1 +1,7 @@
-!factorial
+html{box-sizing:border-box;font-size:62.5%}*,::after,::before{box-sizing:inherit}body{background:var(--color-bg);color:var(--color-text);margin:0;padding:0;font-size:1.6rem}ol,ul{list-style:none}a{text-decoration:none;color:inherit}
+nav ul {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 25px 50px;
+}
