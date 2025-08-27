@@ -25,13 +25,13 @@
                 @foreach($products as $product)
                     <tr>
                         <td>{{$product->product_serial_number}}</td>
-                        <td><img width="100px"  src="https://cafthe.tim.fromentin.v70208.dev-campus.fr/assets/images/products/{{$product->product_img ?? 'coffee.png'}}"></td>
+                        <td><img width="100px" src="https://cafthe.tim.fromentin.v70208.dev-campus.fr/assets/images/products/{{$product->product_img ?? 'coffee.png'}}"></td>
                         <td>{{ $product->category->product_categorie_name ?? 'Non défini' }}</td>
                         <td>{{$product->product_price}} $</td>
                         <td>{{$product->product_stock}}</td>
                         <td>
-                            <a class="btn-primary p-2" href="">Voir</a>
-                            <a class="btn-primary p-2" href="">Modifier</a>
+                            <a class="btn-primary p-2" href="/product/{{$product->product_serial_number}}">Voir</a>
+                            <a class="btn-primary p-2" href="/product/edit/{{$product->product_serial_number}}">Modifier</a>
                             <a class="btn-danger p-2" href="">Supprimer</a>
 
                         </td>

@@ -38,9 +38,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
 {{--                <h6 class="collapse-header">Custom Components:</h6>--}}
                 <a class="collapse-item" href="{{url('/products')}}">Liste Produit</a>
-                <a class="collapse-item" href="buttons.html">Ajout de produit</a>
-                <a class="collapse-item" href="cards.html">Modification Produit</a>
-                <a class="collapse-item" href="cards.html">Catégorisation produits</a>
+                <a class="collapse-item" href="{{url('/products/create')}}">Ajout de produit</a>
+                <a class="collapse-item" href="cards.html">Liste catégorie</a>
 
             </div>
         </div>
@@ -81,6 +80,11 @@
             <span>Modifier la fiche vendeur</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-cart-plus"></i>
+            <span>Commande client</span></a>
+    </li>
 
 
     <!-- Divider -->
