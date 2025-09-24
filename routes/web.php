@@ -3,11 +3,12 @@
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
+use App\Http\Controllers\StatController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//Route::get('/', function () {
+//    return view('welcome');
+//});
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,6 +27,10 @@ Route::get('/product/{product:product_serial_number}', [ProductController::class
 
 // Sellers
 Route::get('/sellers', [SellerController::class, 'index'])->name('sellers.index');
+Route::get('/seller/{seller:seller_id}', [SellerController::class, 'show'])->name('seller.show');
+
+
+Route::get('/', [StatController::class, 'index'])->name('stats.index');
 
 // Route::resource('products', [\App\Http\Controllers\ProductController::class, 'product']);
 

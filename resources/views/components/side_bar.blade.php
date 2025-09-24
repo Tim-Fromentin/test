@@ -48,36 +48,53 @@
 
 
     <!-- Nav Item - Utilities Collapse Menu -->
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-           aria-expanded="true" aria-controls="collapseUtilities">
-            <i class="fas fa-fw fa-folder-open"></i>
-            <span>Stock</span>
-        </a>
-        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-             data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="utilities-color.html">Voir le stock</a>
-                <a class="collapse-item" href="utilities-color.html">Gérer le stock</a>
-            </div>
-        </div>
-    </li>
+{{--    <li class="nav-item">--}}
+{{--        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"--}}
+{{--           aria-expanded="true" aria-controls="collapseUtilities">--}}
+{{--            <i class="fas fa-fw fa-folder-open"></i>--}}
+{{--            <span>Stock</span>--}}
+{{--        </a>--}}
+{{--        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"--}}
+{{--             data-parent="#accordionSidebar">--}}
+{{--            <div class="bg-white py-2 collapse-inner rounded">--}}
+{{--                <a class="collapse-item" href="utilities-color.html">Voir le stock</a>--}}
+{{--                <a class="collapse-item" href="utilities-color.html">Gérer le stock</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </li>--}}
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Utilisateurs
+        Vendeurs
     </div>
 
 
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/sellers">
             <i class="fas fa-fw fa-user"></i>
             <span>Modifier la fiche vendeur</span></a>
+    </li>
+
+
+
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Clients
+    </div>
+
+
+
+    <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+            <i class="fas fa-fw fa-users"></i>
+            <span>Clients</span></a>
     </li>
 
     <li class="nav-item">
@@ -85,7 +102,6 @@
             <i class="fas fa-fw fa-cart-plus"></i>
             <span>Commande client</span></a>
     </li>
-
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

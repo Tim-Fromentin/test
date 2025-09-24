@@ -10,6 +10,8 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
+            <th>Voir</th>
+            <th>Modifier</th>
         </tr>
         </thead>
         <tbody>
@@ -18,6 +20,9 @@
                 <td>{{ $seller['seller_id'] }}</td>
                 <td>{{ $seller['seller_lastName'] }}</td>
                 <td>{{ $seller['seller_firstName'] }}</td>
+                <td>{{$seller['seller_email']}}</td>
+                <td><a href="seller/{{$seller['seller_id']}}">Voir</a></td>
+                <td><a href="seller/">Modifier</a></td>
             </tr>
         @endforeach
         </tbody>
