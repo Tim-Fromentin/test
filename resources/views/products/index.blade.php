@@ -32,7 +32,7 @@
                         <td>
                             <a class="btn-primary p-2" href="/product/{{$product->product_serial_number}}">Voir</a>
                             <a class="btn-primary p-2" href="/product/edit/{{$product->product_serial_number}}">Modifier</a>
-                            <a class="btn-danger p-2" href="">Supprimer</a>
+                            <a class="btn-danger p-2" href="/product/delete/{{$product->product_serial_number}}">Supprimer</a>
 
                         </td>
                     </tr>

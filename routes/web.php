@@ -22,6 +22,8 @@ Route::middleware('auth')->group(function () {
 });
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/store', [ProductController::class, 'store'])->name('products.store');
+Route::delete('/products/destroy/{product:product_serial_number}', [ProductController::class, 'destroy'])->name('products.destroy');
+Route::get('/product/delete/{product:product_serial_number}', [ProductController::class, 'delete'])->name('products.delete');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::get('/product/edit/{product:product_serial_number}', [ProductController::class, 'edit'])->name('products.edit');
 Route::get('/product/{product:product_serial_number}', [ProductController::class, 'show'])->name('products.show');
