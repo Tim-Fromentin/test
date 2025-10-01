@@ -92,7 +92,7 @@
 
 
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/clients">
             <i class="fas fa-fw fa-users"></i>
             <span>Clients</span></a>
     </li>

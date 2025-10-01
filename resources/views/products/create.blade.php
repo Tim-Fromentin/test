@@ -1,7 +1,18 @@
+@if($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <x-layout>
 <h1>Création d'un produit</h1>
 
-    <form action="" class="d-flex flex-column">
+    <form action="{{route('products.store')}}" class="d-flex flex-column">
+        @csrf
         <label for="product_name" class="d-flex flex-column">
             Nom
             <input type="text" name="product_name" id="product_name" required>
@@ -18,12 +29,12 @@
 
         <label for="product_img" class="d-flex flex-column">
             Images
-            <input type="text" name="product_img" id="product_img" />
+            <input type="text" name="product_img" id="product_img" value="coffee.png" />
         </label>
 
-        <label for="product_stocks" class="d-flex flex-column">
+        <label for="product_stock" class="d-flex flex-column">
             Stocks
-            <input type="number" name="product_stocks" id="product_stocks" min="1" step="1" value="1" />
+            <input type="number" name="product_stock" id="product_stock" min="1" step="1" value="1" />
         </label>
         <label for="product_weight" class="d-flex flex-column">
 Poids

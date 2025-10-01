@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -20,6 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
+Route::get('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::get('/product/edit/{product:product_serial_number}', [ProductController::class, 'edit'])->name('products.edit');
 Route::get('/product/{product:product_serial_number}', [ProductController::class, 'show'])->name('products.show');
@@ -31,6 +33,10 @@ Route::get('/seller/{seller:seller_id}', [SellerController::class, 'show'])->nam
 
 
 Route::get('/', [StatController::class, 'index'])->name('stats.index');
+
+
+// Clients
+Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
 
 // Route::resource('products', [\App\Http\Controllers\ProductController::class, 'product']);
 

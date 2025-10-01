@@ -25,8 +25,19 @@ class ProductController extends Controller
         return view('products.create', compact('categories'));
 
     }
-    public function store(){
+    public function store(Request $request){
+        $request->validate([
+            'product_name' => 'required',
+            'product_desc' => 'required',
+            'product_price_pre_tax' => 'required',
+            'product_img' => 'required',
+            'product_stock' => 'required',
+            'product_weight' => 'required',
+            'product_categorie_id' => 'required'
+        ]);
 
+        Product::create($request->all());
+        return redirect()->route('products.index')->with('sucess', 'produit ajouter');
     }
     public function edit(Product $product)
     {
@@ -37,12 +48,15 @@ class ProductController extends Controller
     {
 
     }
-    public function delete()
+    public function delete(Product $product)
     {
-
+        return view('products.delete', compact('product'));
     }
-    public function destroy()
+    public function destroy(Product $product)
     {
+        $product->delete();
+
+        return redirect()->route('products.index')->with('sucess', 'produit supprimer');
 
     }
 }
