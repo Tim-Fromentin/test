@@ -9,3 +9,4 @@
         <button type="submit" class="btn-danger badge-pill">Supprimer</button>
     </form>
 </x-layout>
+
