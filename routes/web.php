@@ -26,6 +26,7 @@ Route::delete('/products/destroy/{product:product_serial_number}', [ProductContr
 Route::get('/product/delete/{product:product_serial_number}', [ProductController::class, 'delete'])->name('products.delete');
 Route::get('/products/create', [ProductController::class, 'create'])->name('products.create');
 Route::get('/product/edit/{product:product_serial_number}', [ProductController::class, 'edit'])->name('products.edit');
+Route::post('/products/update/{product:product_serial_number}', [ProductController::class, 'update'])->name('products.update');
 Route::get('/product/{product:product_serial_number}', [ProductController::class, 'show'])->name('products.show');
 
 
