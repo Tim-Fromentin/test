@@ -29,20 +29,32 @@
 
     <!-- Nav Item - Pages Collapse Menu -->
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-           aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts"
+           aria-expanded="true" aria-controls="collapseProducts">
             <i class="fas fa-fw fa-coffee"></i>
             <span>Produits</span>
         </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseProducts" class="collapse" aria-labelledby="headingProducts" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-{{--                <h6 class="collapse-header">Custom Components:</h6>--}}
                 <a class="collapse-item" href="{{url('/products')}}">Liste Produit</a>
                 <a class="collapse-item" href="{{url('/products/create')}}">Ajout de produit</a>
-                <a class="collapse-item" href="cards.html">Liste catégorie</a>
-
             </div>
         </div>
+    </li>
+
+    <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories"
+           aria-expanded="true" aria-controls="collapseCategories">
+            <i class="fas fa-fw fa-tags"></i>
+            <span>Catégories</span>
+        </a>
+        <div id="collapseCategories" class="collapse" aria-labelledby="headingCategories" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <a class="collapse-item" href="{{url('/categories')}}">Liste Catégories</a>
+                <a class="collapse-item" href="{{url('/categories/create')}}">Ajout de catégorie</a>
+            </div>
+        </div>
+
     </li>
 
 
