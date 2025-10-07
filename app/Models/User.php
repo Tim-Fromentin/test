@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -32,6 +33,15 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+    public function isAdmin()
+    {
+        return $this->role === 'admin';
+    }
+
+    public function isSeller()
+    {
+        return $this->role === 'seller';
+    }
 
     /**
      * Get the attributes that should be cast.
@@ -45,4 +55,5 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
 }

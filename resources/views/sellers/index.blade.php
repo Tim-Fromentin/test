@@ -7,8 +7,7 @@
         <thead>
         <tr>
             <th>ID</th>
-            <th>Nom</th>
-            <th>Prénom</th>
+            <th>Nom et Prénom</th>
             <th>Email</th>
             <th>Voir</th>
             <th>Modifier</th>
@@ -17,12 +16,11 @@
         <tbody>
         @foreach($sellers as $seller)
             <tr>
-                <td>{{ $seller['seller_id'] }}</td>
-                <td>{{ $seller['seller_lastName'] }}</td>
-                <td>{{ $seller['seller_firstName'] }}</td>
-                <td>{{$seller['seller_email']}}</td>
-                <td><a href="seller/{{$seller['seller_id']}}">Voir</a></td>
-                <td><a href="seller/">Modifier</a></td>
+                <td>{{ $seller['id'] }}</td>
+                <td>{{ $seller['name'] }}</td>
+                <td>{{$seller['email']}}</td>
+                <td><a href="seller/{{$seller['id']}}">Voir</a></td>
+                <td><a href="seller/edit/{{$seller['id']}}">Modifier</a></td>
             </tr>
         @endforeach
         </tbody>

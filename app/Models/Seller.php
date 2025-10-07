@@ -8,4 +8,7 @@ class Seller extends Model
 {
     protected $table = 'sellers';
     protected $primaryKey = 'seller_id';
+
+    public $timestamps = false;
+
 }
