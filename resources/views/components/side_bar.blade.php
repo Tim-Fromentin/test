@@ -92,6 +92,12 @@
             <span>Modifier la fiche vendeur</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="/seller/create">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Créé un vendeur</span></a>
+    </li>
+
 
 
     <hr class="sidebar-divider">

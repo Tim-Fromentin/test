@@ -33,10 +33,15 @@ Route::get('/product/{product:product_serial_number}', [ProductController::class
 
 // Sellers
 Route::get('/sellers', [SellerController::class, 'index'])->name('sellers.index');
+Route::get('/seller/create', [SellerController::class, 'create'])->name('sellers.create');
+Route::get('/seller/store', [SellerController::class, 'store'])->name('sellers.store');
 Route::get('/seller/{seller:id}', [SellerController::class, 'show'])->name('seller.show');
 Route::get('/seller/edit/{seller:id}', [SellerController::class, 'edit'])->name('seller.edit');
 Route::post('/seller/update/{seller:id}', [SellerController::class, 'update'])->name('seller.update');
 Route::get('/', [StatController::class, 'index'])->name('stats.index');
+
+
+
 
 
 // Clients

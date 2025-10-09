@@ -6,6 +6,7 @@
     <table id="clientTable" class="display" style="width:100%">
         <thead>
         <tr>
+            <th>1ére connexion</th>
             <th>ID</th>
             <th>Nom</th>
             <th>Prénom</th>
@@ -20,6 +21,13 @@
             @if($client['client_firstName'] !== 'CLIENT DELETE')
 
             <tr>
+                <td class="text-center">
+                    @if($client['client_first_conn'] === 1)
+                        🟢
+                    @else
+                        🔴
+                    @endif
+                </td>
                 <td>{{ $client['client_id'] }}</td>
                 <td>{{ $client['client_lastName'] }}</td>
                 <td>{{ $client['client_firstName'] }}</td>
