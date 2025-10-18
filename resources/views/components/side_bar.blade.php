@@ -121,6 +121,12 @@
             <span>Commande client</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="/clients/create">
+            <i class="fas fa-fw fa-cart-plus"></i>
+            <span>Créé un client</span></a>
+    </li>
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
 

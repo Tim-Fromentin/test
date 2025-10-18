@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CommandController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SellerController;
@@ -46,7 +47,9 @@ Route::get('/', [StatController::class, 'index'])->name('stats.index');
 
 // Clients
 Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
-
+Route::get('/client/{client:client_id}', [ClientController::class, 'show'])->name('clients.show');
+Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
+Route::post('/client/store', [ClientController::class, 'store'])->name('clients.store');
 // Route::resource('products', [\App\Http\Controllers\ProductController::class, 'product']);
 
 
@@ -58,6 +61,11 @@ Route::get('categories/delete/{productCategory:product_categorie_id}', [Categori
 Route::delete('categories/{productCategory:product_categorie_id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
 Route::post('categories/update/{productCategory:product_categorie_id}', [CategoriesController::class, 'update'])->name('categories.update');
 Route::get('categories/edit/{productCategory:product_categorie_id}', [CategoriesController::class, 'edit'])->name('categories.edit');
+
+// Commandes
+Route::get('commands/create/{client:client_id}', [CommandController::class, 'create'])->name('commands.create');
+Route::post('commands/addCart/{id}', [CommandController::class, 'addCart'])->name('commands.addCart');
+Route::post('commands/command', [CommandController::class, 'command'])->name('commands.command');
 
 
 require __DIR__.'/auth.php';

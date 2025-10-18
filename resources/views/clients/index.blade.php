@@ -32,7 +32,7 @@
                 <td>{{ $client['client_lastName'] }}</td>
                 <td>{{ $client['client_firstName'] }}</td>
                 <td>{{$client['client_email']}}</td>
-                <td><a href="http://">Commander</a></td>
+                <td><a href="commands/create/{{$client['client_id']}}">Commander</a></td>
                 <td><a href="client/{{$client['client_id']}}">Voir</a></td>
                 <td><a href="client/">Modifier</a></td>
             </tr>
