@@ -14,6 +14,7 @@
             <th>Commander avec ce client</th>
             <th>Voir</th>
             <th>Modifier</th>
+            <th>Supprimer</th>
         </tr>
         </thead>
         <tbody>
@@ -35,6 +36,8 @@
                 <td><a href="commands/create/{{$client['client_id']}}">Commander</a></td>
                 <td><a href="client/{{$client['client_id']}}">Voir</a></td>
                 <td><a href="client/edit/{{$client['client_id']}}">Modifier</a></td>
+                <td><a href="client/delete/{{$client['client_id']}}">Supprimer</a></td>
+
             </tr>
             @endif
         @endforeach

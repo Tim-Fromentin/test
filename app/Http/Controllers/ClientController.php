@@ -59,21 +59,23 @@ class ClientController extends Controller
             'client_born_date' => 'nullable|date',
             'client_adress' => 'nullable|string|max:255',
         ]);
-        $client->client_firstName = $request->client_firstName;
-        $client->client_lastName = $request->client_lastName;
-        $client->client_email = $request->client_email;
-        $client->client_born_date = $request->client_born_date;
-        $client->client_adress = $request->client_adress;
+        $client->update($validated);
 
-        $client->save();
         return redirect()->route('clients.index')->with('success', 'client modifier');
     }
-    public function delete()
+    public function delete(Client $client)
     {
-
+        return view('clients.delete', compact('client'));
     }
-    public function destroy()
+    public function destroy(Request $request, Client $client)
     {
+        $client->update([
+            'client_firstName' => 'CLIENT DELETE',
+            'client_lastName' => 'CLIENT DELETE',
+            'client_email' => 'CLIENT_DELETE_' . date('Y-m-d_H-i-s') . '@example.com',
+            'client_adress' => 'CLIENT DELETE',
+        ]);
 
+        return redirect()->route('clients.index')->with('success', 'client supprimer');
     }
 }
