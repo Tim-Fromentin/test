@@ -8,7 +8,61 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">Vous allez commander avec le client : {{$client->client_firstName}} {{$client->client_lastName}}</h6>
             <p class="m-0 font-weight-bold text-primary">Son ID client est le : {{$client->client_id}}</p>
-            <pre>{{ print_r($cart, true) }}</pre>
+            <div class="card mt-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title mb-3">Panier</h5>
+
+                    @if(!empty($cart) && is_array($cart))
+                        <ul class="list-group mb-3">
+                            @php $total = 0; @endphp
+
+                            @foreach($cart as $el)
+                                @php
+                                    $price = $el['price'] ?? 0;
+                                    $quantity = $el['quantity'] ?? 0;
+                                    $total += $price * $quantity;
+                                @endphp
+
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <span class="fw-bold text-secondary">#{{ $el['id'] ?? '-' }}</span> —
+                                        <span class="fw-medium">{{ $el['name'] ?? 'Article' }}</span>
+                                        <small class="text-muted d-block">
+                                            Prix : {{$price}} €
+                                        </small>
+                                    </div>
+
+                                    <div class="d-flex align-items-center gap-3">
+                        <span class="badge rounded-pill">
+                            x{{ $quantity }}
+                        </span>
+
+
+                                        <form action="" method="POST" class="m-0 p-0">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i> Supprimer
+                                            </button>
+                                        </form>
+                                    </div>
+                                </li>
+                            @endforeach
+                        </ul>
+
+                        <div class="d-flex justify-content-between align-items-center border-top pt-2">
+                            <strong>Total :</strong>
+                            <span class="fs-5 fw-semibold text-success">
+                {{ $total }} €
+            </span>
+                        </div>
+                    @else
+                        <p class="text-center text-muted mb-0">Aucun article dans le panier</p>
+                    @endif
+                </div>
+
+
+
 
         </div>
         <div class="card-body">

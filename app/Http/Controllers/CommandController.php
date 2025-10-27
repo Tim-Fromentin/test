@@ -29,20 +29,33 @@ class CommandController extends Controller
     public function addCart($id)
     {
         $product = Product::find($id);
-        $cart = \session()->get('cart', []);
-        $quantity = 1;
-        if (isset($cart[$id])){
-        $quantity = 1;
-        }
-        $cart[$id] = [
-            'name' => $product->product_name,
-            // 'quantity' => if(isset($cart[$id])
+        $cart = session()->get('cart', []);
 
-        ];
-        \Illuminate\Support\Facades\Session::put('cart', $cart);
-        // dd(session()->get('cart'));
-         return redirect()->back();
+
+        $quantityInCart = isset($cart[$id]) ? $cart[$id]['quantity'] : 0;
+
+
+        if ($product->product_stock <= $quantityInCart) {
+            return redirect()->back()->with('error', 'Stock insuffisant');
+        }
+
+
+        if (isset($cart[$id])) {
+            $cart[$id]['quantity']++;
+        } else {
+            $cart[$id] = [
+                'id'       => $product->product_serial_number,
+                'name'     => $product->product_name,
+                'price'    => $product->product_price,
+                'quantity' => 1,
+            ];
+        }
+
+        session()->put('cart', $cart);
+
+        return redirect()->back()->with('success', 'Produit ajouté au panier');
     }
+
     public function command(Client $client)
     {
         $cart = \session()->get('cart');
@@ -58,13 +71,13 @@ class CommandController extends Controller
         foreach ($cart as $id => $item) {
             $product = Product::find($id);
             CommandLine::create([
-            'command_quantity' => '1',
+            'command_quantity' => $item['quantity'],
              'command_total_price' => $product->product_price,
              'command_id' => $command->command_id,
              'product_serial_number' => $id
             ]);
         }
-        session_destroy();
+        session()->forget('cart');
         return redirect()->route('clients.index')->with('success', 'Commande créée avec succès !');
     }
 
