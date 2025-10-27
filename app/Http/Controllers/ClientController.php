@@ -50,9 +50,23 @@ class ClientController extends Controller
         return view('clients.edit', compact('client'));
 
     }
-    public function update()
+    public function update(Request $request, Client $client)
     {
+        $validated = $request->validate([
+            'client_firstName' => 'required|string|max:255',
+            'client_lastName' => 'required|string|max:255',
+            'client_email' => 'required|email|max:255',
+            'client_born_date' => 'nullable|date',
+            'client_adress' => 'nullable|string|max:255',
+        ]);
+        $client->client_firstName = $request->client_firstName;
+        $client->client_lastName = $request->client_lastName;
+        $client->client_email = $request->client_email;
+        $client->client_born_date = $request->client_born_date;
+        $client->client_adress = $request->client_adress;
 
+        $client->save();
+        return redirect()->route('clients.index')->with('success', 'client modifier');
     }
     public function delete()
     {

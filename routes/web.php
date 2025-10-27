@@ -50,6 +50,8 @@ Route::get('/clients', [ClientController::class, 'index'])->name('clients.index'
 Route::get('/client/{client:client_id}', [ClientController::class, 'show'])->name('clients.show');
 Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
 Route::post('/client/store', [ClientController::class, 'store'])->name('clients.store');
+Route::get('/client/edit/{client:client_id}', [ClientController::class, 'edit'])->name('clients.edit');
+Route::post('/client/update/{client:client_id}', [ClientController::class, 'update'])->name('clients.update');
 // Route::resource('products', [\App\Http\Controllers\ProductController::class, 'product']);
 
 
@@ -63,6 +65,7 @@ Route::post('categories/update/{productCategory:product_categorie_id}', [Categor
 Route::get('categories/edit/{productCategory:product_categorie_id}', [CategoriesController::class, 'edit'])->name('categories.edit');
 
 // Commandes
+Route::get(' commands/{client:client_id}',[CommandController::class, 'index'])->name('commands.index');
 Route::get('commands/create/{client:client_id}', [CommandController::class, 'create'])->name('commands.create');
 Route::post('commands/addCart/{id}', [CommandController::class, 'addCart'])->name('commands.addCart');
 Route::post('commands/command', [CommandController::class, 'command'])->name('commands.command');

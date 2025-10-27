@@ -58,7 +58,7 @@ class ProductController extends Controller
         $product->product_img = $request->product_img;
 
         $product->save();
-        return redirect()->route('products.index')->with('sucess', 'produit modifier');
+        return redirect()->route('products.index')->with('success', 'produit modifier');
 
 
     }
@@ -70,7 +70,7 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect()->route('products.index')->with('sucess', 'produit supprimer');
+        return redirect()->route('products.index')->with('success', 'produit supprimer');
 
     }
 }

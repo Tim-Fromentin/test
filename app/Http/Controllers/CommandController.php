@@ -8,14 +8,17 @@ use App\Models\CommandLine;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use MongoDB\Driver\Session;
+use function Laravel\Prompts\alert;
 
 class CommandController extends Controller
 {
     public function index(Client $client)
     {
-        $commands = Command::where('client_id', $client['client_id']);
+        $commands = Command::where('client_id', $client['client_id'])->get();
 
+        return view('commands.index', compact('commands', 'client'));
     }
+
 
     public function create(Client $client)
     {
@@ -27,9 +30,14 @@ class CommandController extends Controller
     {
         $product = Product::find($id);
         $cart = \session()->get('cart', []);
-
+        $quantity = 1;
+        if (isset($cart[$id])){
+        $quantity = 1;
+        }
         $cart[$id] = [
-            'name' => $product->product_name
+            'name' => $product->product_name,
+            // 'quantity' => if(isset($cart[$id])
+
         ];
         \Illuminate\Support\Facades\Session::put('cart', $cart);
         // dd(session()->get('cart'));
@@ -56,6 +64,7 @@ class CommandController extends Controller
              'product_serial_number' => $id
             ]);
         }
+        session_destroy();
         return redirect()->route('clients.index')->with('success', 'Commande créée avec succès !');
     }
 

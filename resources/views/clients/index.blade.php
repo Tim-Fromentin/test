@@ -34,7 +34,7 @@
                 <td>{{$client['client_email']}}</td>
                 <td><a href="commands/create/{{$client['client_id']}}">Commander</a></td>
                 <td><a href="client/{{$client['client_id']}}">Voir</a></td>
-                <td><a href="client/">Modifier</a></td>
+                <td><a href="client/edit/{{$client['client_id']}}">Modifier</a></td>
             </tr>
             @endif
         @endforeach
