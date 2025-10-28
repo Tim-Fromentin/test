@@ -43,7 +43,7 @@ class ClientController extends Controller
         'client_adress' => $request->client_adress,
         'client_first_conn' => $request->client_first_conn
     ]);
-    return redirect()->route('clients.index')->with('sucess', 'Client créé');
+    return redirect()->route('clients.index')->with('success', 'Client créé');
     }
     public function edit(Client $client)
     {

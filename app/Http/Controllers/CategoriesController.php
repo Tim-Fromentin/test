@@ -26,7 +26,7 @@ class CategoriesController extends Controller
         ]);
 
         ProductCategory::create($request->all());
-        return redirect()->route('categories.index')->with('sucess', 'catégorie ajouter');
+        return redirect()->route('categories.index')->with('success', 'catégorie ajouter');
     }
 
     public function delete(ProductCategory $productCategory)
@@ -36,7 +36,7 @@ class CategoriesController extends Controller
     public function destroy(ProductCategory $productCategory)
     {
         $productCategory->delete();
-        return redirect()->route('categories.index')->with('sucess', 'Catégorie supprimer');
+        return redirect()->route('categories.index')->with('success', 'Catégorie supprimer');
     }
 
     public function edit(ProductCategory $productCategory)
@@ -53,6 +53,6 @@ class CategoriesController extends Controller
         $productCategory->product_type_sell = $request->product_type_sell;
 
         $productCategory->save();
-        return redirect()->route('categories.index')->with('sucess', 'Catégorie modifier');
+        return redirect()->route('categories.index')->with('success', 'Catégorie modifier');
     }
 }

@@ -41,7 +41,17 @@
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
+                @if (Session::has('error'))
+                    <div class="alert alert-danger">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
 
+                @if (Session::has('success'))
+                    <div class="alert alert-success">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
                 <!-- Page Heading -->
                 {{$slot}}
 

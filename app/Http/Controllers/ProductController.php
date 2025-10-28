@@ -37,7 +37,7 @@ class ProductController extends Controller
         ]);
 
         Product::create($request->all());
-        return redirect()->route('products.index')->with('sucess', 'produit ajouter');
+        return redirect()->route('products.index')->with('success', 'produit ajouter');
     }
     public function edit(Product $product)
     {

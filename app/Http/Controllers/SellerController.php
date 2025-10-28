@@ -43,7 +43,7 @@ class SellerController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-        return redirect()->route('sellers.index')->with('sucess', 'Vendeur créé');
+        return redirect()->route('sellers.index')->with('success', 'Vendeur créé');
     }
     public function edit(User $seller)
     {
@@ -65,7 +65,7 @@ class SellerController extends Controller
         }
 
         $seller->save();
-        return redirect()->route('sellers.index')->with('sucess', 'client modifier');
+        return redirect()->route('sellers.index')->with('success', 'client modifier');
 
 
     }
