@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Testing\Fluent\Concerns\Has;
@@ -17,7 +18,8 @@ class ClientController extends Controller
     }
 
     public function show(Client $client) {
-        return view('clients.show', compact('client'));
+        $commands = Command::where('client_id', $client->client_id)->get();
+        return view('clients.show', compact('client', 'commands'));
     }
     public function create()
     {

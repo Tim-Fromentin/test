@@ -73,5 +73,7 @@ Route::get('commands/create/{client:client_id}', [CommandController::class, 'cre
 Route::post('commands/addCart/{id}', [CommandController::class, 'addCart'])->name('commands.addCart');
 Route::post('commands/command', [CommandController::class, 'command'])->name('commands.command');
 
+// Lignes de commandes
+Route::get(' commands/details/{command:command_id}',[\App\Http\Controllers\CommandeLineController::class, 'show'])->name('commandLines.show');
 
 require __DIR__.'/auth.php';

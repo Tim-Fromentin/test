@@ -16,4 +16,9 @@ class CommandLine extends Model
         'command_id',
         'product_serial_number'
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_serial_number', 'product_serial_number');
+    }
 }
