@@ -99,7 +99,7 @@
                     @endforeach
                     </tbody>
                 </table>
-                <form action="{{route('commands.command')}}" method="POST">
+                <form action="{{route('commands.command', $client)}}" method="POST">
                     @csrf
                     <button type="submit" class="btn btn-primary">Commander</button>
                 </form>

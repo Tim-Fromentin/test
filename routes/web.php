@@ -71,7 +71,11 @@ Route::get('categories/edit/{productCategory:product_categorie_id}', [Categories
 Route::get(' commands/{client:client_id}',[CommandController::class, 'index'])->name('commands.index');
 Route::get('commands/create/{client:client_id}', [CommandController::class, 'create'])->name('commands.create');
 Route::post('commands/addCart/{id}', [CommandController::class, 'addCart'])->name('commands.addCart');
-Route::post('commands/command', [CommandController::class, 'command'])->name('commands.command');
+Route::post('commands/command/{client:client_id}', [CommandController::class, 'command'])->name('commands.command');
+Route::get(' commands/edit/{command:command_id}',[CommandController::class, 'edit'])->name('commands.edit');
+Route::post('commands/update/{command:command_id}', [CommandController::class, 'update'])->name('commands.update');
+
+
 
 // Lignes de commandes
 Route::get(' commands/details/{command:command_id}',[\App\Http\Controllers\CommandeLineController::class, 'show'])->name('commandLines.show');

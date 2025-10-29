@@ -58,10 +58,11 @@ class CommandController extends Controller
 
     public function command(Client $client)
     {
+
         $cart = \session()->get('cart');
         $command = Command::create([
             'command_statut' => '1',
-            'client_id' => '1',
+            'client_id' => $client->client_id,
             'seller_id' => '1',
             'command_total' => '0',
             'command_final_quantity' => '0',
@@ -83,4 +84,20 @@ class CommandController extends Controller
 
 
 
+    public function edit(Command $command)
+    {
+        // dd($command);
+        return view('commands.edit', compact('command'));
+    }
+
+    public function update(Request $request, Command $command)
+    {
+        $validated = $request->validate([
+            'command_adress' => 'required',
+            'command_state' => 'required'
+        ]);
+        $command->update($validated);
+
+        return redirect()->route('clients.index')->with('success', 'commande modifier');
+    }
 }
