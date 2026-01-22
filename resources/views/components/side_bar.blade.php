@@ -94,7 +94,7 @@
 
     <li class="nav-item">
         <a class="nav-link" href="/seller/create">
-            <i class="fas fa-fw fa-user"></i>
+            <i class="fas fa-fw fa-user-plus"></i>
             <span>Créé un vendeur</span></a>
     </li>
 
@@ -115,15 +115,11 @@
             <span>Clients</span></a>
     </li>
 
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-cart-plus"></i>
-            <span>Commande client</span></a>
-    </li>
+
 
     <li class="nav-item">
         <a class="nav-link" href="/clients/create">
-            <i class="fas fa-fw fa-cart-plus"></i>
+            <i class="fas fa-fw fa-user-plus"></i>
             <span>Créé un client</span></a>
     </li>
 

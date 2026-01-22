@@ -14,6 +14,7 @@ class Client extends Model
         'client_email',
         'client_born_date',
         'client_adress',
+        'client_first_conn'
     ];
 
     protected $table = 'clients';

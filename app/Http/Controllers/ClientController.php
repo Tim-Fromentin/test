@@ -34,7 +34,6 @@ class ClientController extends Controller
         'client_email' => 'required',
         'client_born_date' => 'required',
         'client_adress' => 'required',
-        'client_first_conn' => 'required'
 
     ]);
     Client::create([
@@ -43,7 +42,7 @@ class ClientController extends Controller
         'client_email' => $request->client_email,
         'client_born_date' => $request->client_born_date,
         'client_adress' => $request->client_adress,
-        'client_first_conn' => $request->client_first_conn
+        'client_first_conn' => 1
     ]);
     return redirect()->route('clients.index')->with('success', 'Client créé');
     }
