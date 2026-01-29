@@ -45,6 +45,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/seller/update/{seller:id}', [SellerController::class, 'update'])->name('seller.update');
     Route::get('/', [StatController::class, 'index'])->name('stats.index');
 });
+Route::middleware('auth', 'admin')->group(function () {
+    Route::get('/seller/create', [SellerController::class, 'create'])->name('sellers.create');
+    Route::get('/seller/store', [SellerController::class, 'store'])->name('sellers.store');
+    Route::get('/seller/edit/{seller:id}', [SellerController::class, 'edit'])->name('seller.edit');
+    Route::post('/seller/update/{seller:id}', [SellerController::class, 'update'])->name('seller.update');
+});
+
 
 
 
