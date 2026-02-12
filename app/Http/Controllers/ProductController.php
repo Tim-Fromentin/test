@@ -32,6 +32,7 @@ class ProductController extends Controller
             'product_price_pre_tax' => 'required|numeric|min:0',
             'product_img' => 'required',
             'product_stock' => 'required|integer|min:0',
+            'product_country' => 'required',
             'product_weight' => 'required|numeric|min:0',
             'product_categorie_id' => 'required|exists:product_categories,product_categorie_id'
         ]);

@@ -50,7 +50,10 @@ Poids
                 @endforeach
             </select>
         </label>
-
+        <label for="product_name" class="d-flex flex-column">
+            Pays
+            <input type="text" name="product_country" id="product_country" value="France" required>
+        </label>
 
         <button class="btn-primary" type="submit">Créé</button>
     </form>
