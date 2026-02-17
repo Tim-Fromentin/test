@@ -6,7 +6,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-coffee"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Caf'thé</div>
+        <div class="sidebar-brand-text mx-3">Caf'thé -</div>
     </a>
 
     <!-- Divider -->
