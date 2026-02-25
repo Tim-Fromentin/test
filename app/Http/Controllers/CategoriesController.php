@@ -35,7 +35,10 @@ class CategoriesController extends Controller
     }
     public function destroy(ProductCategory $productCategory)
     {
-        $productCategory->delete();
+        $productCategory->update([
+            'product_categorie_is_delete' => true
+        ]);
+
         return redirect()->route('categories.index')->with('success', 'Catégorie supprimer');
     }
 

@@ -76,7 +76,7 @@ Route::middleware('auth')->group(function () {
     Route::get('categories/create', [CategoriesController::class, 'create'])->name('categories.create');
     Route::get('categories/store', [CategoriesController::class, 'store'])->name('categories.store');
     Route::get('categories/delete/{productCategory:product_categorie_id}', [CategoriesController::class, 'delete'])->name('categories.delete');
-    Route::delete('categories/{productCategory:product_categorie_id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
+    Route::put('categories/{productCategory:product_categorie_id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
     Route::post('categories/update/{productCategory:product_categorie_id}', [CategoriesController::class, 'update'])->name('categories.update');
     Route::get('categories/edit/{productCategory:product_categorie_id}', [CategoriesController::class, 'edit'])->name('categories.edit');
 });

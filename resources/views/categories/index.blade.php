@@ -16,7 +16,9 @@
             <tr>
                 <td>{{ $category['product_categorie_id'] }}</td>
                 <td>{{ $category['product_categorie_name'] }}</td>
-                <td><a href="categories/edit/{{$category['product_categorie_id']}}">Modifier</a></td>
+                <td><a href="categories/edit/{{$category['product_categorie_id']}}">Modifier</a>
+                <a href="categories/delete/{{$category['product_categorie_id']}}">Supprimer</a>
+                </td>
             </tr>
         @endforeach
         </tbody>

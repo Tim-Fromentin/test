@@ -13,7 +13,11 @@ class ProductCategory extends Model
     protected $table = 'product_categories';
     protected $primaryKey = 'product_categorie_id';
 
-    protected $fillable = ['product_categorie_name', 'product_type_sell'];
+    protected $fillable = [
+        'product_categorie_name',
+        'product_type_sell',
+        'product_categorie_is_delete'
+    ];
 
     public static function factory()
     {
