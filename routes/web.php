@@ -22,7 +22,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'throttle:10,1'])->group(function () {
 Route::get('/products', [ProductController::class, 'index'])->name('products.index');
 Route::get('/products/store', [ProductController::class, 'store'])->name('products.store');
 Route::delete('/products/destroy/{product:product_serial_number}', [ProductController::class, 'destroy'])->name('products.destroy');
@@ -35,7 +35,7 @@ Route::get('/product/{product:product_serial_number}', [ProductController::class
 
 
 // Sellers
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'throttle:10,1'])->group(function () {
     Route::get('/sellers', [SellerController::class, 'index'])->name('sellers.index');
     Route::get('/seller/create', [SellerController::class, 'create'])->name('sellers.create');
     Route::get('/seller/store', [SellerController::class, 'store'])->name('sellers.store');
@@ -45,7 +45,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/seller/update/{seller:id}', [SellerController::class, 'update'])->name('seller.update');
     Route::get('/', [StatController::class, 'index'])->name('stats.index');
 });
-Route::middleware('auth', 'admin')->group(function () {
+Route::middleware(['auth', 'admin', 'throttle:10,1'])->group(function () {
     Route::get('/seller/create', [SellerController::class, 'create'])->name('sellers.create');
     Route::get('/seller/store', [SellerController::class, 'store'])->name('sellers.store');
     Route::get('/seller/edit/{seller:id}', [SellerController::class, 'edit'])->name('seller.edit');
@@ -57,7 +57,7 @@ Route::middleware('auth', 'admin')->group(function () {
 
 
 // Clients
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'throttle:10,1'])->group(function () {
     Route::get('/clients', [ClientController::class, 'index'])->name('clients.index');
     Route::get('/client/{client:client_id}', [ClientController::class, 'show'])->name('clients.show');
     Route::get('/clients/create', [ClientController::class, 'create'])->name('clients.create');
@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
 
 
 // Categories
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'throttle:10,1'])->group(function () {
     Route::get('categories', [CategoriesController::class, 'index'])->name('categories.index');
     Route::get('categories/create', [CategoriesController::class, 'create'])->name('categories.create');
     Route::get('categories/store', [CategoriesController::class, 'store'])->name('categories.store');
