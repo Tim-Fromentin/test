@@ -16,26 +16,46 @@ class ProductTest extends TestCase
     /** @test */
     public function a_product_can_be_stored()
     {
-        // 1. Préparer l'environnement
-        Storage::fake('public'); // Simule le disque de stockage
-        $category = ProductCategory::factory()->create(); // On crée une catégorie pour l'ID
+        Storage::fake('public');
+        $category = ProductCategory::factory()->create();
 
-        // 2. Agir
         $response = $this->post(route('products.store'), [
-            'product_name' => 'Mon aspirateur',
-            'product_desc' => 'Un super aspirateur ultra puissant',
-            'product_price_pre_tax' => 150.50,
+            'product_name' => 'Thé gingembre',
+            'product_desc' => 'Le meilleur Thé gingembre',
+            'product_price_pre_tax' => 15.50,
             'product_stock' => 10,
             'product_weight' => 2.5,
             'product_categorie_id' => $category->id,
         ]);
 
-        // 3. Vérifier
+        $response->assertRedirect(route('products.index'));
+        $response->assertSessionHas('error', 'produit ajouter');
+
+        $this->assertDatabaseHas('products', [
+            'product_name' => 'Thé gingembre',
+            'product_stock' => '0'
+        ]);
+    }
+
+    public function create_product_with_wrong_fileds()
+    {
+        Storage::fake('public');
+        $category = ProductCategory::factory()->create();
+
+        $response = $this->post(route('products.store'), [
+            'product_name' => 10,
+            'product_desc' => 50,
+            'product_price_pre_tax' => 'Le meilleur Thé gingembre',
+            'product_stock' => 10,
+            'product_weight' => 2.5,
+            'product_categorie_id' => $category->id,
+        ]);
+
         $response->assertRedirect(route('products.index'));
         $response->assertSessionHas('success', 'produit ajouter');
 
         $this->assertDatabaseHas('products', [
-            'product_name' => 'Mon aspirateur',
+            'product_name' => 'Thé gingembre',
             'product_stock' => 10
         ]);
     }

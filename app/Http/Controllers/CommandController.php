@@ -7,6 +7,7 @@ use App\Models\Command;
 use App\Models\CommandLine;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use MongoDB\Driver\Session;
 use function Laravel\Prompts\alert;
 
@@ -56,29 +57,51 @@ class CommandController extends Controller
         return redirect()->back()->with('success', 'Produit ajouté au panier');
     }
 
-    public function command(Client $client)
+    public function command(Client $client, Request $request)
     {
+        $cart = session()->get('cart');
 
-        $cart = \session()->get('cart');
-        $command = Command::create([
-            'command_statut' => '1',
-            'client_id' => $client->client_id,
-            'seller_id' => '1',
-            'command_total' => '0',
-            'command_final_quantity' => '0',
-            'command_adress' => '0',
-            'command_state' => 'en cours'
-        ]);
-        foreach ($cart as $id => $item) {
-            $product = Product::find($id);
-            CommandLine::create([
-            'command_quantity' => $item['quantity'],
-             'command_total_price' => $product->product_price,
-             'command_id' => $command->command_id,
-             'product_serial_number' => $id
-            ]);
+        if (!$cart) {
+            return redirect()->back()->with('error', 'Le panier est vide');
         }
+
+
+        $totalPrice = 0;
+        $totalQuantity = 0;
+
+
+        foreach ($cart as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+            $totalQuantity += $item['quantity'];
+        }
+
+
+        $command = Command::create([
+            'command_statut'         => 0,
+            'client_id'              => $client->client_id,
+            'seller_id'              => $request->user()->id,
+            'command_total'          => $totalPrice,
+            'command_final_quantity' => $totalQuantity,
+            'command_adress'         => $request->input('address', 'Adresse par défaut'),
+            'command_state'          => 'en cours'
+        ]);
+
+
+        foreach ($cart as $id => $item) {
+            try {
+                CommandLine::create([
+                    'command_quantity'      => $item['quantity'],
+                    'command_total_price'   => $item['price'] * $item['quantity'],
+                    'command_id'            => $command->command_id, // Vérifie bien ce nom !
+                    'product_serial_number' => $id
+                ]);
+            } catch (\Exception $e) {
+                dd($e->getMessage()); // Cela va arrêter le code et afficher l'erreur SQL précise
+            }
+        }
+
         session()->forget('cart');
+
         return redirect()->route('clients.index')->with('success', 'Commande créée avec succès !');
     }
 

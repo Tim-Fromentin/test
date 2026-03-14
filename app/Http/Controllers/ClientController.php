@@ -28,14 +28,34 @@ class ClientController extends Controller
 
     }
     public function store(Request $request){
-    $request->validate([
-        'client_firstName' => 'required',
-        'client_lastName' => 'required',
-        'client_email' => 'required',
-        'client_born_date' => 'required',
-        'client_adress' => 'required',
+        $request->validate([
+            'client_firstName' => ['required','string','max:100'],
+            'client_lastName' => ['required','string','max:100'],
+            'client_email' => ['required','string','email','max:255','unique:clients,client_email'],
+            'client_born_date' => ['required','date','before:today'],
+            'client_adress' => ['required','string','max:255'],
+        ],[
+            'client_firstName.required' => 'Le prénom est obligatoire.',
+            'client_firstName.string' => 'Le prénom doit être une chaîne de caractères.',
+            'client_firstName.max' => 'Le prénom ne doit pas dépasser 100 caractères.',
 
-    ]);
+            'client_lastName.required' => 'Le nom est obligatoire.',
+            'client_lastName.string' => 'Le nom doit être une chaîne de caractères.',
+            'client_lastName.max' => 'Le nom ne doit pas dépasser 100 caractères.',
+
+            'client_email.required' => 'L’email est obligatoire.',
+            'client_email.email' => 'L’email doit être une adresse valide.',
+            'client_email.max' => 'L’email ne doit pas dépasser 255 caractères.',
+            'client_email.unique' => 'Cet email est déjà utilisé.',
+
+            'client_born_date.required' => 'La date de naissance est obligatoire.',
+            'client_born_date.date' => 'La date de naissance doit être une date valide.',
+            'client_born_date.before' => 'La date de naissance doit être dans le passé.',
+
+            'client_adress.required' => 'L’adresse est obligatoire.',
+            'client_adress.string' => 'L’adresse doit être une chaîne de caractères.',
+            'client_adress.max' => 'L’adresse ne doit pas dépasser 255 caractères.',
+        ]);
     Client::create([
         'client_firstName' => $request->client_firstName,
         'client_lastName' => $request->client_lastName,

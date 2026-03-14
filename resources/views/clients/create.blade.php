@@ -1,6 +1,9 @@
 <x-layout>
     <form action="{{route('clients.store')}}" method="POST">
 @csrf
+        @error('client_email')
+        <div class="text-danger">{{ $message }}</div>
+        @enderror
 
         <label for="client_firstName">
         Prénom

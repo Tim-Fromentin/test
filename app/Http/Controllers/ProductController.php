@@ -30,7 +30,7 @@ class ProductController extends Controller
             'product_name' => 'required|string|max:255',
             'product_desc' => 'required|string',
             'product_price_pre_tax' => 'required|numeric|min:0',
-            'product_img' => 'required',
+            'product_img' => 'required|string',
             'product_stock' => 'required|integer|min:0',
             'product_country' => 'required',
             'product_weight' => 'required|numeric|min:0',

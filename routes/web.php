@@ -47,7 +47,7 @@ Route::middleware(['auth', 'throttle:10,1'])->group(function () {
 });
 Route::middleware(['auth', 'admin', 'throttle:10,1'])->group(function () {
     Route::get('/seller/create', [SellerController::class, 'create'])->name('sellers.create');
-    Route::get('/seller/store', [SellerController::class, 'store'])->name('sellers.store');
+    Route::post('/seller/store', [SellerController::class, 'store'])->name('sellers.store');
     Route::get('/seller/edit/{seller:id}', [SellerController::class, 'edit'])->name('seller.edit');
     Route::post('/seller/update/{seller:id}', [SellerController::class, 'update'])->name('seller.update');
 });
