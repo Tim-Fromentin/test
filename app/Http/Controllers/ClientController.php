@@ -6,6 +6,7 @@ use App\Models\Client;
 use App\Models\Command;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Testing\Fluent\Concerns\Has;
 use function Laravel\Prompts\password;
 
@@ -90,13 +91,20 @@ class ClientController extends Controller
     }
     public function destroy(Request $request, Client $client)
     {
-        $client->update([
-            'client_firstName' => 'CLIENT DELETE',
-            'client_lastName' => 'CLIENT DELETE',
-            'client_email' => 'CLIENT_DELETE_' . date('Y-m-d_H-i-s') . '@example.com',
-            'client_adress' => 'CLIENT DELETE',
-        ]);
+        try {
+            $client->update([
+                'client_firstName' => 'CLIENT DELETE',
+                'client_lastName' => 'CLIENT DELETE',
+                'client_email' => 'CLIENT_DELETE_' . date('Y-m-d_H-i-s') . '@example.com',
+                'client_adress' => 'CLIENT DELETE',
+            ]);
+            return redirect()
+                ->route('clients.index')
+                ->with('success', 'Le client a bien été anonymisé et désactivé.');
 
-        return redirect()->route('clients.index')->with('success', 'client supprimer');
+        } catch (\Exception $e) {
+            Log::error('Erreur lors de l\'anonymisation du client ID ' . $client->id . ' : ' . $e->getMessage());
+            return back()->with('error', 'Une erreur est survenue lors de la suppression du client.');
+        }
     }
 }

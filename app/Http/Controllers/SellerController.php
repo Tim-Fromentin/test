@@ -73,7 +73,6 @@ class SellerController extends Controller
                 ->with('success', 'Vendeur créé');
 
         } catch (\Exception $e) {
-            dd($e->getMessage());
             Log::error('Erreur création utilisateur : ' . $e->getMessage());
 
             return redirect()

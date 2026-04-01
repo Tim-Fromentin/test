@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -25,20 +26,31 @@ class ProductController extends Controller
         return view('products.create', compact('categories'));
 
     }
-    public function store(Request $request){
+    public function store(Request $request)
+    {
         $request->validate([
             'product_name' => 'required|string|max:255',
             'product_desc' => 'required|string',
             'product_price_pre_tax' => 'required|numeric|min:0',
             'product_img' => 'required|string',
             'product_stock' => 'required|integer|min:0',
-            'product_country' => 'required',
+            'product_country' => 'required|in:France,Espagne',
             'product_weight' => 'required|numeric|min:0',
             'product_categorie_id' => 'required|exists:product_categories,product_categorie_id'
         ]);
 
-        Product::create($request->all());
-        return redirect()->route('products.index')->with('success', 'produit ajouter');
+        try {
+            Product::create($request->all());
+            return redirect()
+                ->route('products.index')
+                ->with('success', 'Le produit a bien été ajouté avec succès.');
+
+        } catch (\Exception $e) {
+            Log::error('Erreur lors de la création du produit : ' . $e->getMessage());
+            return back()
+                ->withInput()
+                ->with('error', 'Une erreur est survenue lors de l\'ajout du produit. Veuillez réessayer.');
+        }
     }
     public function edit(Product $product)
     {

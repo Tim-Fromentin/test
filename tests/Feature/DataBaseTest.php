@@ -14,20 +14,31 @@ class DataBaseTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-public function insert_user()
-{
-    DB::table('users')->insert([
-        ['id' => 999, 'name' => 'john doe', 'email' => 'john.doe@gmail.com',
-            'password' => 'password', 'created_at' => '2025-06-27 14:02:05', 'updated_at' => '2025-06-27 14:02:05',
-            'role' => 'seller']
-    ]);
-    User::factory()->count(1)->create();
+    public function test_insert_user()
+    {
+        // 1. Insertion via le query builder
+        DB::table('users')->insert([
+            [
+                'id' => 999,
+                'name' => 'John Doe',
+                'email' => 'john.doe@gmail.com',
+                'password' => bcrypt('password'),
+                'created_at' => now(),
+                'updated_at' => now(),
+                'role' => 'seller'
+            ]
+        ]);
 
-    $this->assertDatabaseCount('users', 2);
-    $this->assertDatabaseHas('users', [
-        'id' => 999
-    ]);
-}
+        // 2. Insertion via le Model Factory (plus proche de la réalité Laravel)
+        User::factory()->create();
+
+        // 3. Vérifications (Assertions)
+        $this->assertDatabaseCount('users', 2); // On attend 2 utilisateurs au total
+
+        $this->assertDatabaseHas('users', [
+            'id' => 999
+        ]);
+    }
 
     public function insert_user_with_wrong_field()
     {
