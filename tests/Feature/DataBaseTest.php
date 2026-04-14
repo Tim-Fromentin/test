@@ -16,7 +16,6 @@ class DataBaseTest extends TestCase
     /** @test */
     public function test_insert_user()
     {
-        // 1. Insertion via le query builder
         DB::table('users')->insert([
             [
                 'id' => 999,
@@ -28,12 +27,8 @@ class DataBaseTest extends TestCase
                 'role' => 'seller'
             ]
         ]);
-
-        // 2. Insertion via le Model Factory (plus proche de la réalité Laravel)
         User::factory()->create();
-
-        // 3. Vérifications (Assertions)
-        $this->assertDatabaseCount('users', 2); // On attend 2 utilisateurs au total
+        $this->assertDatabaseCount('users', 2);
 
         $this->assertDatabaseHas('users', [
             'id' => 999

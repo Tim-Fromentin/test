@@ -89,7 +89,7 @@ class ClientController extends Controller
     {
         return view('clients.delete', compact('client'));
     }
-    public function destroy(Request $request, Client $client)
+    public function destroy(Client $client)
     {
         try {
             $client->update([
