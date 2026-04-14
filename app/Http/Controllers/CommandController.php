@@ -79,7 +79,7 @@ class CommandController extends Controller
         $command = Command::create([
             'command_statut'         => 0,
             'client_id'              => $client->client_id,
-            'seller_id'              => $request->user()->id,
+            'seller_id'              => 1,
             'command_total'          => $totalPrice,
             'command_final_quantity' => $totalQuantity,
             'command_adress'         => $request->input('address', 'Adresse par défaut'),
